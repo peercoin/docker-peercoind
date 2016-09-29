@@ -3,11 +3,10 @@ Peercoind docker image.
 
 ## Supported tags and respective `Dockerfile` links
 - `0.5.4` ([0.54/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.5.4/Dockerfile))
-- `0.5.4-pars` ([0.54/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.5.4-pars/Dockerfile))
+- `0.5.4-pars` ([0.54-pars/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.5.4-pars/Dockerfile))
 
 ## Usage
 ### How to use this image
-This image contains the main binaries from the Bitcoin Core project - `ppcoind`. 
 It behaves like a binary, so you can pass any arguments to the image and they will be forwarded to the `ppcoind` binary:
 
 ```sh
@@ -28,5 +27,11 @@ You can also mount a directory it in a volume under `/home/sunny/.ppcoind` in ca
 ```sh
 $ docker run -v /opt/peercoin:/home/sunny/.ppcoin -it --rm peerchemist/peercoind
 ```
+That will allow to access containers `~/.ppcoin` directory in `/opt/peercoin` on the host.
 
-That will allow to access containers `~/$USER/.ppcoind` directory in `/opt/peercoin` on the host.
+
+```sh
+$ docker run -v ${PWD}/data:/home/sunny/.ppcoin -it --rm peerchemist/peercoind
+```
+will mount current directiory in containers `~/.ppcoin`
+

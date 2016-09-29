@@ -18,8 +18,6 @@ if [ $(echo "$1" | cut -c1) = "-" ] || [ "$1" = "ppcoind" ]; then
 fi
 
 if [ ! -f $PPC_DATA/ppcoin.conf ]; then
-  #echo "rpcuser=rpcuser\nrpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)" > $PPC_DATA/ppcoin.conf
-  #echo "server=1" >> $PPC_DATA/ppcoin.conf
   	cat <<-EOF > "$PPC_DATA/ppcoin.conf"
       rpcpassword=${PPCCOIN_RPC_PASSWORD:-password}
       rpcuser=${PPCCOIN_RPC_USER:-bitcoin}

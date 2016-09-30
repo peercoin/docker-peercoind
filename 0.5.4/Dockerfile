@@ -39,7 +39,7 @@ ENV PPC_DATA=/home/sunny/.ppcoin \
   PATH=/usr/local/bin/:$PATH
 VOLUME ["/home/sunny/.ppcoin"]
 
-COPY docker-entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 9901 9902

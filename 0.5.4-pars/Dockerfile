@@ -27,7 +27,7 @@ RUN apt-get update -y \
     && make -f makefile.unix USE_UPNP= -e PIE=1 -C src \
     && install -Dm755 "src/ppcoind" "/usr/local/bin/" \
     ## cleanup
-    && cd .. && rm v${PPC_VERSION}.tar.gz && rm -r cd peercoin-advanced-relay-${PPC_VERSION} \
+    && cd .. && rm v${PPC_VERSION}.tar.gz && rm -r peercoin-advanced-relay-${PPC_VERSION} \
     && apt-get remove -y --purge curl ca-certificates build-essential libssl-dev libdb++-dev \
     libboost-program-options-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev \
     && apt-get -y clean \
@@ -39,7 +39,7 @@ ENV PPC_DATA=/home/sunny/.ppcoin \
   PATH=/usr/local/bin/:$PATH
 VOLUME ["/home/sunny/.ppcoin"]
 
-COPY docker-entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 9901 9902

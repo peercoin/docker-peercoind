@@ -42,5 +42,5 @@ VOLUME ["/home/sunny/.ppcoin"]
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 9901 9902
+EXPOSE 9901 9902 9904
 CMD ["ppcoind"]

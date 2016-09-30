@@ -1,4 +1,7 @@
 # peerchemist/peercoind
+
+[![tip for next commit](https://peer4commit.com/projects/189.svg)](https://peer4commit.com/projects/189)
+
 Peercoind docker image. There are two tags: `latest` - which provides classic ppcoind binary built from github/ppcoin repository.
 Other tag is `pars` which provides modified client by @hrobeers.
 

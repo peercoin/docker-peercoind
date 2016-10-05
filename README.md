@@ -1,5 +1,7 @@
 # peerchemist/peercoind
 
+[![](https://images.microbadger.com/badges/image/peerchemist/peercoind.svg)](https://microbadger.com/images/peerchemist/peercoind "Size/Layers")
+
 [![tip for next commit](https://peer4commit.com/projects/189.svg)](https://peer4commit.com/projects/189)
 
 Peercoind docker image. There are two tags: `latest` - which provides classic ppcoind binary built from github/ppcoin repository.

@@ -1,0 +1,31 @@
+#variables are stored in .env file
+
+version: "2"
+services:
+  localtestnet1:
+    image: "${IMAGE}:${TAG}"
+    expose:
+      - 9903
+      - 9904
+    ports:
+      - "19902:9904"
+    command: -debug -dns -rpcallowip=* -rpcpassword=bar -rpcuser=foo -testnet=1 -gen -connect=localtestnet2:9903 -connect=localtestnet2:9904
+    networks:
+      testnet:
+        aliases:
+          - "localtestnet1"
+  localtestnet2:
+    image: "${IMAGE}:${TAG}" 
+    expose:
+      - 9903
+      - 9904
+    ports:
+      - "19903:9904"
+    command: -debug -dns -rpcallowip=* -rpcpassword=bar -rpcuser=foo -testnet=1 -connect=localtestnet1:9903 -connect=localtestnet1:9904
+    networks:
+      testnet:
+        aliases:
+          - "localtestnet2"
+
+networks:
+  testnet:

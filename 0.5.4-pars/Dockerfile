@@ -11,6 +11,7 @@ RUN apt-get update -y \
     && apt-get install --no-install-recommends -y curl ca-certificates build-essential libssl-dev libdb++-dev \
     libboost-program-options-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev \
     libboost-program-options1.55.0 libboost-filesystem1.55.0 libboost-system1.55.0 libboost-thread1.55.0 \
+    tor \
     ## gosu
     && gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
     && curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$(dpkg --print-architecture) \

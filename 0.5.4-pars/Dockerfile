@@ -35,6 +35,10 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd -r sunny
 
+#tor stuff
+#https://github.com/peerchemist/Peerbox/blob/3c8e2e25cb0589624cfff15de6b78f6b507eb08d/pcf/set_tor
+RUN echo "HiddenServiceDir /var/lib/tor/ppcoin-service/" >> /etc/tor/torrc && echo "HiddenServicePort 9901 127.0.0.1:9901" >> /etc/tor/torrc
+
 ## container stuff
 ENV PPC_DATA=/home/sunny/.ppcoin \
   PATH=/usr/local/bin/:$PATH

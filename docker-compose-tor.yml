@@ -9,7 +9,8 @@ services:
       - 9904
     ports:
       - "19902:9904"
-    command: -debug -rpcallowip=* -rpcpassword=bar -rpcuser=foo -testnet=1 -gen -bind=127.0.0.1 -proxy=127.0.0.1:9050 -externalip=${HOSTNAME} -listen
+    #externalip is set in entrypoint-tor.sh
+    command: -debug -rpcallowip=* -rpcpassword=bar -rpcuser=foo -testnet=1 -gen -bind=127.0.0.1 -proxy=127.0.0.1:9050 -listen
     networks:
       testnet:
         aliases:

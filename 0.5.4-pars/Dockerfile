@@ -44,6 +44,7 @@ ENV PPC_DATA=/home/sunny/.ppcoin \
   PATH=/usr/local/bin/:$PATH
 VOLUME ["/home/sunny/.ppcoin"]
 
+COPY entrypoint-tor.sh /entrypoint-tor.sh
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 

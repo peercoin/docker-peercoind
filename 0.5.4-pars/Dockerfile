@@ -11,6 +11,7 @@ RUN apt-get update -y \
     && apt-get install --no-install-recommends -y curl ca-certificates build-essential libssl-dev libdb++-dev \
     libboost-program-options-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev \
     libboost-program-options1.55.0 libboost-filesystem1.55.0 libboost-system1.55.0 libboost-thread1.55.0 \
+    tor \
     ## gosu
     && gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
     && curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$(dpkg --print-architecture) \
@@ -34,11 +35,16 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd -r sunny
 
+#tor stuff
+#https://github.com/peerchemist/Peerbox/blob/3c8e2e25cb0589624cfff15de6b78f6b507eb08d/pcf/set_tor
+RUN echo "HiddenServiceDir /var/lib/tor/ppcoin-service/" >> /etc/tor/torrc && echo "HiddenServicePort 9901 127.0.0.1:9901" >> /etc/tor/torrc
+
 ## container stuff
 ENV PPC_DATA=/home/sunny/.ppcoin \
   PATH=/usr/local/bin/:$PATH
 VOLUME ["/home/sunny/.ppcoin"]
 
+COPY entrypoint-tor.sh /entrypoint-tor.sh
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 

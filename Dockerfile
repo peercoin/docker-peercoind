@@ -30,4 +30,4 @@ COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 9901 9902 9903 9904
-CMD ["ppcoind"]
+CMD ["peercoind"]

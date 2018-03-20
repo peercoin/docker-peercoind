@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [[ "$1" == "peercoin-cli" || "$1" == "peercoind" ]]; then
+if [[ "$1" == "peercoin-cli" || "$1" == "peercoind" || "$1" == "ppcoind" ]]; then
 	mkdir -p "$PPC_DATA"
 
 	if [[ ! -s "$PPC_DATA/peercoin.conf" ]]; then

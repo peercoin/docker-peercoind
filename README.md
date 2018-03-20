@@ -4,12 +4,10 @@
 
 [![tip for next commit](https://peer4commit.com/projects/189.svg)](https://peer4commit.com/projects/189)
 
-Peercoind docker image. There are two tags: `latest` - which provides classic ppcoind binary built from github/ppcoin repository.
-Other tag is `pars` which provides modified client by @hrobeers.
+Peercoind docker image. There are two tags: `latest` - which provides classic peercoin binary built from github/peercoin repository.
 
 ## Supported tags and respective `Dockerfile` links
-- `0.5.4` ([0.54/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.5.4/Dockerfile))
-- `0.5.4-pars` ([0.54-pars/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.5.4-pars/Dockerfile))
+- `0.6.2` ([0.62/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.6.2/Dockerfile))
 
 ## Usage
 ### How to use this image
@@ -33,41 +31,34 @@ $ docker run --name ppctestnet -d peerchemist/peercoind \
   -testnet=1
 ```
 
-By default, `ppcoind` will run as as user `sunny` for security reasons and with its default data dir (`~/.ppcoind`). If you'd like to customize where `ppcoind` stores its data, you must use the `PPC_DATA` environment variable. The directory will be automatically created with the correct permissions for the `sunny` user and `ppcoind` automatically configured to use it.
+By default, `peercoin` will run as as user `sunny` for security reasons and with its default data dir (`~/.peercoin`). If you'd like to customize where `peercoin` stores its data, you must use the `PPC_DATA` environment variable. The directory will be automatically created with the correct permissions for the `sunny` user and `peercoin` automatically configured to use it.
 
 ```sh
 $ docker run --env PPC_DATA=/var/lib/peercoin --name peercoind -d peerchemist/peercoind
 ```
 
-You can also mount a directory it in a volume under `/home/sunny/.ppcoind` in case you want to access it on the host:
+You can also mount a directory it in a volume under `/home/sunny/.peercoin` in case you want to access it on the host:
 
 ```sh
-$ docker run -v /opt/peercoin:/home/sunny/.ppcoin --name peercoind -d peerchemist/peercoind
+$ docker run -v /opt/peercoin:/home/sunny/.peercoin --name peercoind -d peerchemist/peercoind
 ```
-That will allow to access containers `~/.ppcoin` directory in `/opt/peercoin` on the host.
-
-
-```sh
-$ docker run -v ${PWD}/data:/home/sunny/.ppcoin --name peercoind -d peerchemist/peercoind
-```
-will mount current directiory in containers `~/.ppcoin`
+That will allow to access containers `~/.peercoin` directory in `/opt/peercoin` on the host.
 
 
 ```sh
-$ docker run -v /opt/pars:/home/sunny/.ppcoin --name peercoind -d peerchemist/peercoind:pars
+$ docker run -v ${PWD}/data:/home/sunny/.peercoin --name peercoind -d peerchemist/peercoind
 ```
-will pull a pars image and set it up in `/opt/pars`.
-
+will mount current directory in containers `~/.peercoin`
 
 To map container RPC ports to localhost start container with following command:
 
 ```sh
-$ docker run -v /opt/pars:/home/sunny/.ppcoin -p 9902:9902 --name peercoind -d peerchemist/peercoind:pars -rpcallowip=*
+$ docker run -v /opt/ppc:/home/sunny/.peercoin -p 9902:9902 --name peercoind -d peerchemist/peercoind -rpcallowip=*
 ```
-You may want to change the port that it is being maped to if you already run a ppcoind instance on the localhost.
+You may want to change the port that it is being mapped to if you already run a peercoin instance on the localhost.
 For example: `-p 9999:9902` will map port 9902 from container to localhost:9999.
 
-Now you will be able to `curl` the ppcoind RPC in the container:
+Now you will be able to `curl` the peercoin RPC in the container:
 
 `curl --user bitcoin:password --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }'  -H 'cont
 ent-type: text/plain;' localhost:9902/`

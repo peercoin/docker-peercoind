@@ -1,33 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
-if [ $(echo "$1" | cut -c1) = "-" ]; then
-  echo "$0: assuming arguments for peercoind"
+if [[ "$1" == "peercoin-cli" || "$1" == "peercoind" ]]; then
+	mkdir -p "$PPC_DATA"
 
-  set -- peercoind "$@"
-fi
-
-if [ $(echo "$1" | cut -c1) = "-" ] || [ "$1" = "peeercoind" ]; then
-  mkdir -p "$PPC_DATA"
-  chmod 700 "$PPC_DATA"
-  chown -R sunny "$PPC_DATA"
-
-  echo "$0: setting data directory to $PPC_DATA"
-
-  set -- "$@" -datadir="$PPC_DATA"
-fi
-
-if [ ! -f $PPC_DATA/ppcoin.conf ]; then
-  	cat <<-EOF > "$PPC_DATA/ppcoin.conf"
-      rpcpassword=${PPCCOIN_RPC_PASSWORD:-password}
-      rpcuser=${PPCCOIN_RPC_USER:-bitcoin}
+	if [[ ! -s "$PPC_DATA/peercoin.conf" ]]; then
+		cat <<-EOF > "$PPC_DATA/peercoin.conf"
+		rpcallowip=::/0
+		rpcpassword=${RPC_PASSWORD}
+		rpcuser=${RPC_USER}
 		EOF
+		chown sunny:sunny "$PPC_DATA/peercoin.conf"
+	fi
+
+	# ensure correct ownership and linking of data directory
+	# we do not update group ownership here, in case users want to mount
+	# a host directory and still retain access to it
+	chown -R sunny "$PPC_DATA"
+	ln -sfn "$PPC_DATA" /home/sunny/.peercoin
+	chown -h sunny:sunny /home/sunny/.peercoin
+
+	exec gosu sunny "$@"
 fi
 
-if [ "$1" = "peercoind" ] || [ "$1" = "peercoin-cli" ]; then
-  echo
-  exec gosu sunny "$@"
-fi
-
-echo
 exec "$@"

@@ -9,7 +9,7 @@ RUN apk --no-cache add openssl
 ENV BERKELEYDB_VERSION=db-4.8.30.NC
 ENV BERKELEYDB_PREFIX=/opt/berkleydb
 
-RUN wget https://download.oracle.com/berkeley-db/${BERKELEYDB_VERSION}.tar.gz
+RUN wget -q https://download.oracle.com/berkeley-db/${BERKELEYDB_VERSION}.tar.gz
 RUN tar -xzf *.tar.gz
 RUN sed s/__atomic_compare_exchange/__atomic_compare_exchange_db/g -i ${BERKELEYDB_VERSION}/dbinc/atomic.h
 RUN mkdir -p ${BERKELEYDB_PREFIX}
@@ -51,7 +51,7 @@ RUN tar -xzf peercoin.tar.gz
 WORKDIR /peercoin-${PEERCOIN_VERSION}ppc
 
 RUN sed -i '/AC_PREREQ/a\ARFLAGS=cr' configure.ac \
-    && sed -i s:sys/fcntl.h:fcntl.h: src/compat.h \
+    && sed -i 's:sys/fcntl.h:fcntl.h:' src/compat.h
 # ./configure can't find berkley db unless we do this
 RUN ln -s /opt/berkleydb /usr/include/db4.8 \
     && ln -s /opt/berkleydb/include/* /usr/include  \

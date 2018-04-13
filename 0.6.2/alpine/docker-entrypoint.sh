@@ -3,18 +3,21 @@ set -e
 
 if [ $(echo "$1" | cut -c1) = "-" ]; then
   echo "$0: assuming arguments for peercoind"
-
   set -- peercoind "$@"
 fi
 
 if [ $(echo "$1" | cut -c1) = "-" ] || [ "$1" = "peercoind" ]; then
-  mkdir -p "$PEERCOIN_DATA"
-  chmod 700 "$PEERCOIN_DATA"
-  chown -R peercoin "$PEERCOIN_DATA"
+  chown -R peercoin $PPC_DATA
+	if [[ ! -s "$PPC_DATA/peercoin.conf" ]]; then
+    cat <<-EOF > "$PPC_DATA/peercoin.conf"
+    rpcallowip=::/0
+    rpcpassword=${RPC_PASSWORD}
+    rpcuser=${RPC_USER}
+		EOF
+    chown peercoin "$PPC_DATA/peercoin.conf"
+	fi
 
-  echo "$0: setting data directory to $PEERCOIN_DATA"
-
-  set -- "$@" -datadir="$PEERCOIN_DATA"
+  set -- "$@" -datadir="$PPC_DATA"
 fi
 
 if [ "$1" = "peercoind" ] || [ "$1" = "peercoin-cli" ]; then
@@ -22,5 +25,4 @@ if [ "$1" = "peercoind" ] || [ "$1" = "peercoin-cli" ]; then
   exec su-exec peercoin "$@"
 fi
 
-echo
 exec "$@"

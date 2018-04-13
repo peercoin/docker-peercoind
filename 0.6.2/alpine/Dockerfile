@@ -77,14 +77,14 @@ RUN strip ${PEERCOIN_PREFIX}/bin/peercoind
 # Build stage for compiled artifacts
 FROM alpine
 
-RUN adduser -S peercoin
-RUN apk --no-cache add \
-  boost \
-  boost-program_options \
-  openssl \
-  su-exec
+RUN adduser -S peercoin && \
+  apk --no-cache add \
+    boost \
+    boost-program_options \
+    openssl \
+    su-exec
 
-ENV PEERCOIN_DATA=/home/peercoin/.peercoin
+ENV PPC_DATA=/home/peercoin/.peercoin
 ENV PEERCOIN_PREFIX=/opt/peercoin
 ENV PATH=${PEERCOIN_PREFIX}/bin:$PATH
 
@@ -96,5 +96,3 @@ VOLUME ["/home/peercoin/.peercoin"]
 EXPOSE 9901 9902 9903 9904
 
 ENTRYPOINT ["/entrypoint.sh"]
-
-CMD ["peercoind"]

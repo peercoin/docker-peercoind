@@ -9,7 +9,7 @@ services:
       - 9904
     ports:
       - "19902:9904"
-    command: -debug -dns -rpcallowip=* -rpcpassword=bar -rpcuser=foo -testnet=1 -gen -connect=localtestnet2:9903 -connect=localtestnet2:9904
+    command: -debug -dns -rpcallowip=* -rpcpassword=bar -rpcuser=foo -testnet=1 -connect=localtestnet2:9903 -connect=localtestnet2:9904
     networks:
       testnet:
         aliases:

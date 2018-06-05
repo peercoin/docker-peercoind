@@ -84,14 +84,14 @@ RUN adduser -S peercoin && \
     openssl \
     su-exec
 
-ENV PPC_DATA=/home/peercoin/.peercoin
+ENV PPC_DATA=/data
 ENV PEERCOIN_PREFIX=/opt/peercoin
 ENV PATH=${PEERCOIN_PREFIX}/bin:$PATH
 
 COPY --from=peercoin-build /opt /opt
 COPY docker-entrypoint.sh /entrypoint.sh
 
-VOLUME ["/home/peercoin/.peercoin"]
+VOLUME [${PPC_DATA}]
 
 EXPOSE 9901 9902 9903 9904
 

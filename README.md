@@ -7,7 +7,7 @@
 Peercoind docker image. There are two tags: `latest` - which provides classic peercoin binary built from github/peercoin repository.
 
 ## Supported tags and respective `Dockerfile` links
-- `0.6.2` ([0.62/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.6.2/Dockerfile))
+- `0.6.3` ([0.63/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.6.3/Dockerfile))
 
 ## Usage
 ### How to use this image

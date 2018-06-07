@@ -82,7 +82,8 @@ RUN adduser -S peercoin && \
     boost \
     boost-program_options \
     openssl \
-    su-exec
+    su-exec \
+    bash
 
 ENV PPC_DATA=/data
 ENV PEERCOIN_PREFIX=/opt/peercoin

@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
-if [ $(echo "$1" | cut -c1) = "-" ]; then
+if [ "$(echo "$1" | cut -c1)" = "-" ]; then
   echo "$0: assuming arguments for peercoind"
   set -- peercoind "$@"
 fi
 
-if [ $(echo "$1" | cut -c1) = "-" ] || [ "$1" = "peercoind" ]; then
+if [ "$(echo "$1" | cut -c1)" = "-" ] || [ "$1" = "peercoind" ]; then
   chown -R peercoin $PPC_DATA
 	if [[ ! -s "$PPC_DATA/peercoin.conf" ]]; then
     cat <<-EOF > "$PPC_DATA/peercoin.conf"

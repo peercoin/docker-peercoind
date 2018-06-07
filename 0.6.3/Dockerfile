@@ -88,6 +88,8 @@ RUN adduser -S peercoin && \
 ENV PPC_DATA=/data
 ENV PEERCOIN_PREFIX=/opt/peercoin
 ENV PATH=${PEERCOIN_PREFIX}/bin:$PATH
+ENV RPC_PASSWORD=ppcpass
+ENV RPC_USER=ppcuser
 
 COPY --from=peercoin-build /opt /opt
 COPY docker-entrypoint.sh /entrypoint.sh
@@ -97,3 +99,5 @@ VOLUME [${PPC_DATA}]
 EXPOSE 9901 9902 9903 9904
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["peercoind"]

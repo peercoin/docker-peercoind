@@ -40,15 +40,15 @@ RUN apk --no-cache add autoconf \
     linux-headers 
 
 ENV PEERCOIN_VERSION=0.7.0 \
-    PEERCOIN_SHA=c8d30cee31b7a8b613e59ad9084d5248f8dd24791a98be04bd195a71b9d8c839 \
+    PEERCOIN_SHA=0e2d604ae21f144fac0e35476777095622aecba96c455569ab0016e1176454ce \
     PEERCOIN_PREFIX=/opt/peercoin
 
-RUN wget -q -O peercoin.tar.gz https://github.com/peercoin/peercoin/archive/v${PEERCOIN_VERSION}ppc.rc1.tar.gz \
+RUN wget -q -O peercoin.tar.gz https://github.com/peercoin/peercoin/archive/v${PEERCOIN_VERSION}ppc.rc5.tar.gz \
     && echo "${PEERCOIN_SHA}  peercoin.tar.gz" | sha256sum -c - 
 
 RUN tar -xzf peercoin.tar.gz
 
-WORKDIR /peercoin-${PEERCOIN_VERSION}ppc.rc1
+WORKDIR /peercoin-${PEERCOIN_VERSION}ppc.rc5
 
 RUN sed -i '/AC_PREREQ/a\ARFLAGS=cr' configure.ac \
     && sed -i 's:sys/fcntl.h:fcntl.h:' src/compat.h

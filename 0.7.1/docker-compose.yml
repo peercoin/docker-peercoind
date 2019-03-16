@@ -1,0 +1,16 @@
+version: '3.5'
+services:
+  peercoind:
+    build: .
+    restart: always
+    image: peercoind
+    environment:
+      - RPC_USER=peercoind
+      - RPC_PASSWORD=peercoindrpc
+    volumes:
+      - type: bind
+        source: /opt/peercoin/
+        target: /data
+    command:
+      -nominting
+      -rpcallowip=*

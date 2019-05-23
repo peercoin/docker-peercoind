@@ -2,12 +2,13 @@
 
 [![](https://images.microbadger.com/badges/image/peerchemist/peercoind.svg)](https://microbadger.com/images/peerchemist/peercoind "Size/Layers")
 
-[![tip for next commit](https://peer4commit.com/projects/189.svg)](https://peer4commit.com/projects/189)
-
 Peercoind docker image. There are two tags: `latest` - which provides classic peercoin binary built from github/peercoin repository.
 
 ## Supported tags and respective `Dockerfile` links
-- `0.6.3` ([0.63/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.6.3/Dockerfile))
+
+- `0.7.0` ([0.7.0/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.7.0/Dockerfile))
+- `0.7.1` ([0.7.1/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.7.1/Dockerfile))
+- `0.7.3` ([0.7.3/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.7.3/Dockerfile))
 
 ## Usage
 ### How to use this image

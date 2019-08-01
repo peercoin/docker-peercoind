@@ -6,9 +6,7 @@ Peercoind docker image. There are two tags: `latest` - which provides classic pe
 
 ## Supported tags and respective `Dockerfile` links
 
-- `0.7.0` ([0.7.0/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.7.0/Dockerfile))
-- `0.7.1` ([0.7.1/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.7.1/Dockerfile))
-- `0.7.3` ([0.7.3/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.7.3/Dockerfile))
+- `0.8.1` ([0.8.1/Dockerfile](https://github.com/peerchemist/docker-peercoind/blob/master/0.8.1/Dockerfile))
 
 ## Usage
 ### How to use this image

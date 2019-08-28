@@ -40,8 +40,8 @@ RUN apk --no-cache add autoconf \
     zeromq-dev \
     protobuf-dev
 
-ENV PEERCOIN_VERSION=0.8.1 \
-    PEERCOIN_SHA=771220a08a4c97008b1bfc0a17acf512c9656099a1f81db6aaba554dbe98153f \
+ENV PEERCOIN_VERSION=0.8.3 \
+    PEERCOIN_SHA=c5ab81636ed19b0a455e3d5ffa41a590777f50a5fd46bae3e4df509b4b90cf6e \
     PEERCOIN_PREFIX=/opt/peercoin
 
 RUN wget -q -O peercoin.tar.gz https://github.com/peercoin/peercoin/archive/v${PEERCOIN_VERSION}ppc.tar.gz \
@@ -50,10 +50,6 @@ RUN wget -q -O peercoin.tar.gz https://github.com/peercoin/peercoin/archive/v${P
 RUN tar -xzf peercoin.tar.gz
 
 WORKDIR /peercoin-${PEERCOIN_VERSION}ppc
-
-RUN sed -i '/AC_PREREQ/a\AR_FLAGS=cr' src/univalue/configure.ac
-RUN sed -i '/AX_PROG_CC_FOR_BUILD/a\AR_FLAGS=cr' src/secp256k1/configure.ac
-RUN sed -i s:sys/fcntl.h:fcntl.h: src/compat.h
 
 # ./configure can't find berkley db unless we do this
 RUN ln -s /opt/berkleydb /usr/include/db4.8 \

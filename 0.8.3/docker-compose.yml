@@ -14,3 +14,6 @@ services:
     command:
       -nominting
       -rpcallowip=*
+    ports:
+      - '9901:9901'
+      - '9903:9903'

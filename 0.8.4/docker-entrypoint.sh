@@ -24,7 +24,7 @@ if [ "$(echo "$1" | cut -c1)" = "-" ] || [ "$1" = "peercoind" ]; then
   set -- "$@" -datadir="$PPC_DATA"
 fi
 
-if [ "$1" = "peercoind" ] || [ "$1" = "peercoin-cli" ] || [ "$1" = "bitcoin-tx" ]; then
+if [ "$1" = "peercoind" ] || [ "$1" = "peercoin-cli" ] || [ "$1" = "peercoin-tx" ]; then
   echo
   exec su-exec peercoin "$@"
 fi

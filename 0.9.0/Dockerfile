@@ -1,5 +1,5 @@
 # Build stage for BerkeleyDB
-FROM alpine as berkeleydb
+FROM alpine:3.11 as berkeleydb
 
 RUN apk --no-cache add autoconf
 RUN apk --no-cache add automake
@@ -22,7 +22,7 @@ RUN make install
 RUN rm -rf ${BERKELEYDB_PREFIX}/docs
 
 # Build stage for Peercoind
-FROM alpine as peercoin-build
+FROM alpine:3.11 as peercoin-build
 
 COPY --from=berkeleydb /opt/ /opt/
 

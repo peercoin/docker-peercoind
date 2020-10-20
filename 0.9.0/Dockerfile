@@ -76,7 +76,7 @@ RUN strip ${PEERCOIN_PREFIX}/lib/libpeercoinconsensus.a
 RUN strip ${PEERCOIN_PREFIX}/lib/libpeercoinconsensus.so.0.0.0
 
 # Build stage for compiled artifacts
-FROM alpine
+FROM alpine:3.11
 
 RUN adduser -S peercoin && \
   apk --no-cache add \

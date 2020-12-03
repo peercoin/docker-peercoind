@@ -36,23 +36,23 @@ By default, `peercoin` will run as as user `peercoin` for security reasons and s
 $ docker run --env PPC_DATA=/var/lib/peercoin --name peercoind -d peercoin/peercoind
 ```
 
-You can also mount a directory it in a volume under `/home/peercoin/.peercoin` in case you want to access it on the host:
+You can also mount a directory it in a volume under `/data` in case you want to access it on the host:
 
 ```sh
-$ docker run -v /opt/peercoin:/home/peercoin/.peercoin --name peercoind -d peercoin/peercoind
+$ docker run -v /opt/peercoin:/data --name peercoind -d peercoin/peercoind
 ```
-That will allow to access containers `~/.peercoin` directory in `/opt/peercoin` on the host.
+That will allow to access containers `/data` directory in `/opt/peercoin` on the host.
 
 
 ```sh
-$ docker run -v ${PWD}/data:/home/peercoin/.peercoin --name peercoind -d peercoin/peercoind
+$ docker run -v ${PWD}/data:/data --name peercoind -d peercoin/peercoind
 ```
-will mount current directory in containers `~/.peercoin`
+will mount current directory at `/data` in the container.
 
 To map container RPC ports to localhost start container with following command:
 
 ```sh
-$ docker run -v /opt/peercoin:/home/peercoin/.peercoin -p 9902:9902 --name peercoind -d peercoin/peercoind -rpcallowip=*
+$ docker run -p 9902:9902 --name peercoind -d peercoin/peercoind -rpcallowip=*
 ```
 You may want to change the port that it is being mapped to if you already run a peercoin instance on the localhost.
 For example: `-p 9999:9902` will map port 9902 from container to localhost:9999.

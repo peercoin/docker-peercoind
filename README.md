@@ -30,7 +30,7 @@ $ docker run --name testnet-peercoind -d peercoin/peercoind \
   -testnet=1
 ```
 
-By default, `peercoin` will run as as user `peercoin` for security reasons and with its default data dir (`~/.peercoin`). If you'd like to customize where `peercoin` stores its data, you must use the `PPC_DATA` environment variable. The directory will be automatically created with the correct permissions for the user and `peercoin` automatically configured to use it.
+By default, `peercoin` will run as as user `peercoin` for security reasons and store data in `/data`. If you'd like to customize where `peercoin` stores its data, you must use the `PPC_DATA` environment variable. The directory will be automatically created with the correct permissions for the user and `peercoin` automatically configured to use it.
 
 ```sh
 $ docker run --env PPC_DATA=/var/lib/peercoin --name peercoind -d peercoin/peercoind

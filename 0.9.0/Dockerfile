@@ -97,7 +97,7 @@ ENV RPC_USER=ppcuser
 COPY --from=peercoin-build /opt /opt
 COPY docker-entrypoint.sh /entrypoint.sh
 
-VOLUME [${PPC_DATA}]
+VOLUME ["${PPC_DATA}"]
 
 EXPOSE 9901 9902 9903 9904
 

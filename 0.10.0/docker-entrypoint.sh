@@ -14,6 +14,8 @@ if [ "$(echo "$1" | cut -c1)" = "-" ] || [ "$1" = "peercoind" ]; then
 
 	if [[ ! -s "$PPC_DATA/peercoin.conf" ]]; then
     cat <<-EOF > "$PPC_DATA/peercoin.conf"
+    test.rpcbind=0.0.0.0
+    main.rpcbind=0.0.0.0
     rpcallowip=::/0
     rpcpassword=${RPC_PASSWORD}
     rpcuser=${RPC_USER}

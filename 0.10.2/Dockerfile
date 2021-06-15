@@ -40,8 +40,8 @@ RUN apk --no-cache add autoconf \
     zeromq-dev \
     protobuf-dev
 
-ENV PEERCOIN_VERSION=0.10.1ppc \
-    PEERCOIN_SHA=44d22dd6882ec107d2445090b1b0bdfea1e0b02d65faa22d730b5a224077cdd9 \
+ENV PEERCOIN_VERSION=0.10.2ppc \
+    PEERCOIN_SHA=b991070a2b98387ce41a5305be1d37edf1214e0986e1bcd3a24fbc46a30fc7ee \
     PEERCOIN_PREFIX=/opt/peercoin
 
 RUN wget -q -O peercoin.tar.gz https://github.com/peercoin/peercoin/archive/refs/tags/v${PEERCOIN_VERSION}.tar.gz \

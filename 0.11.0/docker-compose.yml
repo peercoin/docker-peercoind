@@ -1,0 +1,20 @@
+version: '3.5'
+services:
+  peercoind:
+    build: .
+    restart: always
+    image: peercoind:next
+    environment:
+      - RPC_USER=peercoind
+      - RPC_PASSWORD=peercoindrpc
+    volumes:
+      - type: bind
+        source: /opt/peercoin/
+        target: /data
+    command:
+      -nominting
+      -rpcbind=0.0.0.0
+      -rpcallowip=0.0.0.0/0
+    ports:
+      - '9901:9901'
+      - '9903:9903'

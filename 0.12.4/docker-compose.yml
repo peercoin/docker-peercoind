@@ -1,0 +1,20 @@
+version: '3.6'
+services:
+  peercoind:
+    build: .
+    restart: always
+    image: peercoind:next
+    environment:
+      - RPC_USER=peercoind
+      - RPC_PASSWORD=peercoindrpc
+    volumes:
+      - type: bind
+        source: /tmp/ololo
+        target: /data
+    command:
+      -nominting
+      -rpcbind=0.0.0.0
+      -rpcallowip=0.0.0.0/0
+    ports:
+      - '19901:9901'
+      - '19903:9903'
